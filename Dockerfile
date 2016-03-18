@@ -18,5 +18,9 @@ ENV DRIVER redis:
 ADD . /
 RUN chmod +x /*.sh
 
+# Workaround for Hipache 0.3.1 issue
+# <https://github.com/hipache/hipache/issues/225>
+RUN npm install eventemitter3@0.1.6 hipache@0.3.1 -g --production
+
 EXPOSE 80
 CMD ["/run.sh"]
