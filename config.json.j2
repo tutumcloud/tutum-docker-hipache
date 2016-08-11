@@ -1,19 +1,37 @@
 {
     "server": {
-        "accessLog": "{{ SERVER_ACCESSLOG }}",
+        "debug": {{ SERVER_DEBUG }},
         "workers": {{ SERVER_WORKERS }},
         "maxSockets": {{ SERVER_MAXSOCKETS }},
-        "deadBackendTTL": {{ SERVER_DEADBACKENDTTL }},
         "tcpTimeout": {{ SERVER_TCPTIMEOUT }},
+        "deadBackendTTL": {{ SERVER_DEADBACKENDTTL }},
         "retryOnError": {{ SERVER_RETRYONERROR }},
-        "deadBackendOn500": {{ SERVER_DEADBACKENDON500 }},
+        "accessLog": "{{ SERVER_ACCESSLOG }}",
         "httpKeepAlive": {{ SERVER_HTTPKEEPALIVE }},
+        "deadBackendOn500": {{ SERVER_DEADBACKENDON500 }},
+        "staticDir": null
         "lruCache": {
             "size": {{ SERVER_LRUCACHE_SIZE }},
             "ttl": {{ SERVER_LRUCACHE_TTL }}
         },
-        "port": {{ SERVER_PORT }},
-        "address": ["{{ SERVER_ADDRESS }}"]
+    },
+    "http": {
+        "port": {{ SERVER_HTTP_PORT }},
+        "bind": ["{{ SERVER_HTTP_BIND }}"]
+    },
+    "https": {
+        "port": {{ SERVER_HTTPS_PORT }},
+        "bind": ["{{ SERVER_HTTPS_BIND }}"]
+        "ca": [],
+        "secureProtocol": "SSLv23_method",
+        "secureOptions": 50331648,
+        "key": "{{ SERVER_HTTPS_KEY }}",
+        "cert": "{{ SERVER_HTTPS_CERT }}",
+        "passphrase": {{ SERVER_SSL_PASSPHRASE }},
+        "ciphers": "DH+ECDSA+AESGCM EECDH+aRSA+AESGCM EECDH+ECDSA+SHA384 EECDH+ECDSA+SHA256 EECDH+a RSA+SHA384 EECDH+aRSA+SHA256 EECDH+aRSA+RC4 EECDH EDH+aRSA RC4 !aNULL !eNULL !LOW !3DES !MD5 !EXP !PSK !SRP !DSS !RC4",
+        "honorCipherOrder": true
     },
     "driver": "{{ DRIVER }}"
+    "user": "{{ SERVER_USER }}",
+    "group": "{{ SERVER_GROUP }}"
 }
